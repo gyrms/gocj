@@ -108,30 +108,56 @@ OrderItem (주문 상품)
 
 ---
 
-## 1주차 — DB 설계 + 인증
+## 1주차 — 프로젝트 세팅 + 인증
 
 > 목표: 프로젝트 세팅 완료 + 회원가입/로그인 API 동작
 
-### 평일 (헬스 O, 40분)
+### 월요일 (헬스 O / 40분)
+- Spring Boot 프로젝트 생성 (start.spring.io)
+- build.gradle 의존성 추가
+  - spring-boot-starter-web
+  - spring-boot-starter-data-jpa
+  - spring-boot-starter-security
+  - spring-boot-starter-data-redis
+  - querydsl-jpa
+  - jjwt (JWT 라이브러리)
+  - mysql-connector-j
+  - lombok
 
-| 요일 | 할 일 |
-|------|------|
-| 월 | Spring Boot 프로젝트 생성, 의존성 설정 (build.gradle) |
-| 수 | Member Entity + MemberRepository 작성 |
-| 금 | JoinRequest / LoginRequest / MemberResponse DTO 작성 |
+### 화요일 (헬스 X / 2시간) — 기술 면접 공부
+- JPA 심화 학습 (`JPA_심화학습.md` 참고)
+  - 영속성 컨텍스트, N+1 문제, 지연로딩, @Transactional 원리
 
-### 주말
+### 수요일 (헬스 O / 40분)
+- Member Entity 작성 (id, email, password, name, role, created_at)
+- MemberRepository 작성 (JpaRepository 상속)
+- JoinRequest / LoginRequest / MemberResponse DTO 작성
 
-| 일정 | 할 일 |
-|------|------|
-| 토 오전 | Spring Security + JWT 설정 (SecurityConfig, JwtTokenProvider) |
-| 토 오후 | JwtAuthenticationFilter 구현, 토큰 발급 로직 |
-| 일 | MemberService + MemberController 구현, Postman으로 회원가입/로그인 테스트 |
+### 목요일 (헬스 X / 2시간) — Docker 공부
+- `Docker_기초개념.md` 정독
+  - 이미지 / 컨테이너 / Dockerfile / Docker Compose 개념 숙지
+
+### 금요일 (헬스 O / 40분)
+- application.yml 설정 (DB, Redis, JWT)
+- QueryDslConfig, RedisConfig 작성
+- GlobalExceptionHandler, CustomException, ErrorCode 작성
+
+### 토요일 (5시간)
+- 오전 (2시간): SecurityConfig 작성, JwtTokenProvider 구현 (토큰 생성/검증)
+- 오후 (3시간): JwtAuthenticationFilter 구현, MemberService + MemberController 작성
+  - POST /api/auth/join (회원가입)
+  - POST /api/auth/login (로그인 → JWT 반환)
+
+### 일요일 (2시간)
+- Postman으로 회원가입 / 로그인 API 전체 테스트
+- 오류 수정 및 코드 정리
+- git commit & push
 
 ### 완료 기준
-- [ ] 회원가입 API 동작 (POST /api/auth/join)
-- [ ] 로그인 API 동작 → JWT 토큰 반환 (POST /api/auth/login)
-- [ ] JWT 토큰으로 인증이 필요한 API 접근 가능
+- [ ] POST /api/auth/join 회원가입 동작
+- [ ] POST /api/auth/login 로그인 → JWT 토큰 반환
+- [ ] JWT 헤더 없이 인증 API 접근 시 401 반환
+- [ ] JWT 포함 시 인증 API 정상 접근
 
 ---
 
@@ -139,71 +165,117 @@ OrderItem (주문 상품)
 
 > 목표: 상품 API (QueryDSL) + 장바구니 (Redis) + 주문 API 완성
 
-### 평일 (헬스 O, 40분)
+### 월요일 (헬스 O / 40분)
+- Category Entity 작성 (id, name)
+- Product Entity 작성 (id, name, price, stock, description, category_id, created_at)
+- ProductRepository 작성
 
-| 요일 | 할 일 |
-|------|------|
-| 월 | Category + Product Entity, ProductRepository 작성 |
-| 수 | ProductQueryRepository 작성 (QueryDSL 동적 검색 — 카테고리, 가격범위, 키워드) |
-| 금 | Order + OrderItem Entity, OrderRepository 작성 |
+### 화요일 (헬스 X / 2시간) — 기술 면접 공부
+- MSA 개념 학습 (`MSA_개념학습.md` 참고)
+  - MSA vs 모놀리식, 서비스 간 통신, 분산 트랜잭션, Saga 패턴
 
-### 주말
+### 수요일 (헬스 O / 40분)
+- ProductQueryRepository 작성 (QueryDSL)
+  - 카테고리 필터 (BooleanExpression)
+  - 가격 범위 필터 (minPrice ~ maxPrice)
+  - 키워드 검색 (상품명 like)
+  - 조건 조합 동적 쿼리
 
-| 일정 | 할 일 |
-|------|------|
-| 토 오전 | ProductService + ProductController 구현, 상품 목록/상세 API 테스트 |
-| 토 오후 | RedisConfig 설정, CartService 구현 (Redis Hash로 장바구니 관리) |
-| 일 오전 | CartController 구현, 장바구니 담기/조회/삭제 테스트 |
-| 일 오후 | OrderService + OrderController 구현, 주문 생성/조회 테스트 |
+### 목요일 (헬스 X / 2시간) — Docker 공부
+- `Docker_실습가이드.md` 정독
+  - Dockerfile 멀티 스테이지 빌드 구조 이해
+  - docker-compose.yml 작성 방법 미리 파악
+
+### 금요일 (헬스 O / 40분)
+- Order Entity 작성 (id, member_id, total_price, status, created_at)
+- OrderItem Entity 작성 (id, order_id, product_id, quantity, price)
+- OrderRepository 작성
+
+### 토요일 (5시간)
+- 오전 (2시간): ProductService + ProductController 구현
+  - GET /api/products (동적 검색 — 카테고리, 가격범위, 키워드)
+  - GET /api/products/{id} (상품 상세)
+  - POST /api/products (상품 등록, 관리자)
+- 오후 (3시간): CartService 구현 (Redis Hash 기반)
+  - POST /api/cart (장바구니 담기 + TTL 설정)
+  - GET /api/cart (장바구니 조회)
+  - DELETE /api/cart/{productId} (장바구니 삭제)
+
+### 일요일 (2시간)
+- OrderService + OrderController 구현
+  - POST /api/orders (주문 생성 + 재고 차감 @Transactional)
+  - GET /api/orders (내 주문 목록)
+  - GET /api/orders/{id} (주문 상세)
+- Postman으로 전체 API 테스트
+- git commit & push
 
 ### 완료 기준
-- [ ] 상품 목록 API (카테고리/가격범위/키워드 필터 동작)
-- [ ] QueryDSL 동적 쿼리 동작 확인
+- [ ] 상품 목록 API 카테고리/가격범위/키워드 필터 동작
+- [ ] QueryDSL 동적 쿼리 정상 동작
 - [ ] 장바구니 Redis 저장/조회/삭제 동작
-- [ ] 주문 생성 시 재고 차감 트랜잭션 처리
+- [ ] 주문 생성 시 재고 차감 + 트랜잭션 처리
 
 ---
 
-## 3주차 — 테스트 코드 + 배포
+## 3주차 — 테스트 코드 + Docker 배포
 
 > 목표: 테스트 코드 작성 + Docker 라즈베리파이 배포 + README 완성
 
-### 평일 (헬스 O, 40분)
+### 월요일 (헬스 O / 40분)
+- MemberService 단위 테스트 (JUnit5 + Mockito)
+  - 회원가입 성공 / 이메일 중복 예외 테스트
 
-| 요일 | 할 일 |
-|------|------|
-| 월 | MemberService 단위 테스트 (JUnit5 + Mockito) |
-| 수 | ProductService 단위 테스트 (동적 검색 로직 검증) |
-| 금 | OrderService 단위 테스트 (재고 차감 트랜잭션 검증) |
+### 화요일 (헬스 X / 2시간) — 기술 면접 공부
+- Spring 심화 학습 (`Spring_개념학습.md` 참고)
+  - IoC/DI, AOP, @Transactional 원리, Spring Security Filter Chain
 
-### 주말
+### 수요일 (헬스 O / 40분)
+- ProductService 단위 테스트 (JUnit5 + Mockito)
+  - 상품 조회 성공 / 존재하지 않는 상품 예외 테스트
+  - QueryDSL 동적 검색 조건 테스트
 
-| 일정 | 할 일 |
-|------|------|
-| 토 오전 | Dockerfile 작성 (멀티 스테이지 빌드) |
-| 토 오후 | docker-compose.yml 작성 (app + mysql + redis) |
-| 일 오전 | 라즈베리파이 Docker 설치 + docker compose up 배포 |
-| 일 오후 | README.md 작성 (프로젝트 소개, 기술스택, API 목록, 실행 방법) |
+### 목요일 (헬스 X / 2시간) — Docker 공부
+- `Docker_면접대비.md` 숙지
+  - 면접 예상 질문 12개 답변 직접 소리 내어 연습
+
+### 금요일 (헬스 O / 40분)
+- OrderService 단위 테스트 (JUnit5 + Mockito)
+  - 주문 생성 성공 / 재고 부족 예외 테스트
+
+### 토요일 (5시간)
+- 오전 (2시간): Dockerfile 작성 (멀티 스테이지 빌드), .dockerignore 작성
+- 오후 (3시간): docker-compose.yml 작성 (app + mysql + redis)
+  - healthcheck 설정 (MySQL 기동 후 앱 시작)
+  - Volume 설정 (MySQL, Redis 데이터 영속성)
+  - 환경변수 설정
+
+### 일요일 (2시간)
+- 라즈베리파이에서 Docker 설치 확인
+- git pull → docker compose up --build -d 배포
+- 외부에서 API 호출 테스트
+- README.md 작성
+  - 프로젝트 소개, 기술스택, ERD, API 목록, 실행 방법, 어필 포인트
+- git commit & push
 
 ### 완료 기준
-- [ ] 핵심 Service 단위 테스트 3개 이상
-- [ ] 라즈베리파이에서 docker compose up 으로 정상 실행
-- [ ] 외부에서 API 호출 가능 (공인 IP 또는 도메인)
-- [ ] README.md 정리 완료
+- [ ] 핵심 Service 단위 테스트 3개 이상 작성
+- [ ] 라즈베리파이 docker compose up 정상 실행
+- [ ] 외부에서 API 호출 가능
+- [ ] README.md 완성
 
 ---
 
-## 주간 공부 시간 배분
+## 주간 공부 시간 배분 요약
 
-```
-월 (헬스 O, 40분)  : 프로젝트 작업
-화 (헬스 X, 2시간) : 기술 면접 공부 (JPA / MSA / Spring 등)
-수 (헬스 O, 40분)  : 프로젝트 작업
-목 (헬스 X, 2시간) : 기술 면접 공부
-금 (헬스 O, 40분)  : 프로젝트 작업
-토 (5시간)         : 프로젝트 집중 (어려운 것 몰아서)
-일 (2시간)         : 프로젝트 마무리 + 복습
-```
+| 요일 | 헬스 | 시간 | 내용 |
+|------|------|------|------|
+| 월 | O | 40분 | 프로젝트 작업 |
+| 화 | X | 2시간 | 기술 면접 공부 (JPA → MSA → Spring) |
+| 수 | O | 40분 | 프로젝트 작업 |
+| 목 | X | 2시간 | Docker 공부 (기초 → 실습 → 면접대비) |
+| 금 | O | 40분 | 프로젝트 작업 |
+| 토 | 선택 | 5시간 | 프로젝트 집중 (어려운 것 몰아서) |
+| 일 | X | 2시간 | 마무리 + 테스트 + git push |
 
 ---
 
