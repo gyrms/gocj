@@ -31,7 +31,7 @@
 - GlobalExceptionHandler + ErrorCode로 예외 응답 통일, JUnit5 테스트, Swagger 문서화
 
 > 📌 소스는 **별도 저장소**에 있습니다 → https://github.com/gyrms/olive-market
-> [개발 계획 문서](olive-market_개발계획.md)
+> [개발 계획 문서](archive/olive-market_개발계획.md)
 
 ---
 
