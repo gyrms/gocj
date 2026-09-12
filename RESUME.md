@@ -7,7 +7,7 @@
 | 이름 | 윤효근 |
 | 연락처 | 010-8287-6090 |
 | 이메일 | gyrms512@naver.com |
-| GitHub | github.com/hyoguen-yoon |
+| GitHub | github.com/gyrms |
 
 ---
 
@@ -26,7 +26,7 @@
 |------|------|
 | Language | Java |
 | Framework | Spring Boot, Spring Framework |
-| ORM | JPA |
+| ORM | JPA, MyBatis |
 | Cache | Redis |
 | Cloud | AWS (EC2, S3) |
 | CI/CD | Jenkins |
@@ -65,6 +65,7 @@
   - 야놀자 제휴 약 500개 호텔/모텔 대상 온라인 예약 서비스 설계 및 개발
   - 카카오·네이버 소셜 로그인 연동 구현
   - 도메인이 다른 웹 서비스 2개 간 Redis 세션 공유로 통합 로그인 처리
+  - 나이스페이 PG 연동으로 신용카드 온라인 결제 구현, 결제 승인·취소 상태를 예약 상태와 동기화 처리
   - 문자 알림 서비스(SMS) 연동
   - B2C 예약 화면 및 관리자 백오피스 페이지 개발 (2인 팀에서 대부분의 기능 직접 구현)
 

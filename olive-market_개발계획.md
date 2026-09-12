@@ -108,15 +108,15 @@ OrderItem (주문 상품)
 
 ---
 
-## 1주차 (3/19 목 ~ 3/25 수) — 프로젝트 세팅 + 인증
+## 1주차 (3/23 월 ~ 3/29 일) — 프로젝트 세팅 + 인증
 
 > 목표: 프로젝트 세팅 완료 + 회원가입/로그인 API 동작
 
-### 3/19 목 (헬스 X / 2시간) — Docker 공부
+### 3/23 월 (헬스 O / 40분) — Docker 공부
 - `Docker_기초개념.md` 정독
   - 이미지 / 컨테이너 / Dockerfile / Docker Compose 개념 숙지
 
-### 3/20 금 (헬스 O / 40분)
+### 3/24 화 (헬스 X / 2시간)
 - Spring Boot 프로젝트 생성 (start.spring.io)
 - build.gradle 의존성 추가
   - spring-boot-starter-web
@@ -128,27 +128,27 @@ OrderItem (주문 상품)
   - mysql-connector-j
   - lombok
 
-### 3/21 토 (5시간)
-- 오전 (2시간): application.yml 설정, QueryDslConfig, RedisConfig, 예외처리 클래스 작성
-- 오전 (1시간): Member Entity + MemberRepository + DTO 작성
-- 오후 (2시간): SecurityConfig + JwtTokenProvider + JwtAuthenticationFilter 구현
+### 3/25 수 (헬스 O / 40분)
+- application.yml 설정, QueryDslConfig, RedisConfig, 예외처리 클래스 작성
+- Member Entity + MemberRepository + DTO 작성
 
-### 3/22 일 (2시간)
+### 3/26 목 (헬스 X / 2시간)
+- SecurityConfig + JwtTokenProvider + JwtAuthenticationFilter 구현
+
+### 3/27 금 (헬스 O / 40분)
 - MemberService + MemberController 작성
   - POST /api/auth/join (회원가입)
   - POST /api/auth/login (로그인 → JWT 반환)
 - Postman으로 회원가입 / 로그인 API 테스트
 - git commit & push
 
-### 3/23 월 (헬스 O / 40분)
+### 3/28 토 (5시간)
 - 오류 수정 및 코드 정리
 - 인증 흐름 전체 재검토
 
-### 3/24 화 (헬스 X / 2시간) — 기술 면접 공부
+### 3/29 일 (2시간) — 기술 면접 공부
 - JPA 심화 학습 (`JPA_심화학습.md` 참고)
   - 영속성 컨텍스트, N+1 문제, 지연로딩, @Transactional 원리
-
-### 3/25 수 (헬스 O / 40분)
 - Category + Product Entity + ProductRepository 작성 (2주차 선행)
 
 ### 완료 기준
@@ -159,32 +159,34 @@ OrderItem (주문 상품)
 
 ---
 
-## 2주차 (3/26 목 ~ 4/1 수) — 핵심 비즈니스 로직
+## 2주차 (3/30 월 ~ 4/5 일) — 핵심 비즈니스 로직
 
 > 목표: 상품 API (QueryDSL) + 장바구니 (Redis) + 주문 API 완성
 
-### 3/26 목 (헬스 X / 2시간) — Docker 공부
+### 3/30 월 (헬스 O / 40분) — Docker 공부
 - `Docker_실습가이드.md` 정독
   - Dockerfile 멀티 스테이지 빌드 구조 이해
   - docker-compose.yml 작성 방법 미리 파악
 
-### 3/27 금 (헬스 O / 40분)
+### 3/31 화 (헬스 X / 2시간)
 - ProductQueryRepository 작성 (QueryDSL)
   - 카테고리 필터 (BooleanExpression)
   - 가격 범위 필터 (minPrice ~ maxPrice)
   - 키워드 검색 (상품명 like)
 
-### 3/28 토 (5시간)
-- 오전 (2시간): ProductService + ProductController 구현
+### 4/1 수 (헬스 O / 40분)
+- ProductService + ProductController 구현
   - GET /api/products (동적 검색 — 카테고리, 가격범위, 키워드)
   - GET /api/products/{id} (상품 상세)
   - POST /api/products (상품 등록)
-- 오후 (3시간): CartService 구현 (Redis Hash 기반)
+
+### 4/2 목 (헬스 X / 2시간)
+- CartService 구현 (Redis Hash 기반)
   - POST /api/cart (장바구니 담기 + TTL 설정)
   - GET /api/cart (장바구니 조회)
   - DELETE /api/cart/{productId} (장바구니 삭제)
 
-### 3/29 일 (2시간)
+### 4/3 금 (헬스 O / 40분)
 - Order + OrderItem Entity + OrderRepository 작성
 - OrderService + OrderController 구현
   - POST /api/orders (주문 생성 + 재고 차감 @Transactional)
@@ -192,14 +194,12 @@ OrderItem (주문 상품)
   - GET /api/orders/{id} (주문 상세)
 - git commit & push
 
-### 3/30 월 (헬스 O / 40분)
+### 4/4 토 (5시간)
 - Postman으로 전체 API 테스트 + 오류 수정
 
-### 3/31 화 (헬스 X / 2시간) — 기술 면접 공부
+### 4/5 일 (2시간) — 기술 면접 공부
 - MSA 개념 학습 (`MSA_개념학습.md` 참고)
   - MSA vs 모놀리식, 서비스 간 통신, 분산 트랜잭션, Saga 패턴
-
-### 4/1 수 (헬스 O / 40분)
 - 2주차 전체 코드 점검 + 버그 수정
 
 ### 완료 기준
@@ -210,41 +210,43 @@ OrderItem (주문 상품)
 
 ---
 
-## 3주차 (4/2 목 ~ 4/8 수) — 테스트 코드 + Docker 배포
+## 3주차 (4/6 월 ~ 4/12 일) — 테스트 코드 + Docker 배포
 
 > 목표: 테스트 코드 작성 + Docker 라즈베리파이 배포 + README 완성
 
-### 4/2 목 (헬스 X / 2시간) — Docker 공부
+### 4/6 월 (헬스 O / 40분) — Docker 공부
 - `Docker_면접대비.md` 숙지
   - 면접 예상 질문 12개 답변 직접 소리 내어 연습
 
-### 4/3 금 (헬스 O / 40분)
+### 4/7 화 (헬스 X / 2시간)
 - MemberService 단위 테스트 (JUnit5 + Mockito)
   - 회원가입 성공 / 이메일 중복 예외 테스트
 
-### 4/4 토 (5시간)
-- 오전 (1시간): ProductService 단위 테스트 — 상품 조회 성공 / 존재하지 않는 상품 예외 테스트
-- 오전 (1시간): OrderService 단위 테스트 — 주문 생성 성공 / 재고 부족 예외 테스트
-- 오전 (1시간): Dockerfile 작성 (멀티 스테이지 빌드), .dockerignore 작성
-- 오후 (2시간): docker-compose.yml 작성 (app + mysql + redis)
+### 4/8 수 (헬스 O / 40분)
+- ProductService 단위 테스트 — 상품 조회 성공 / 존재하지 않는 상품 예외 테스트
+- OrderService 단위 테스트 — 주문 생성 성공 / 재고 부족 예외 테스트
+
+### 4/9 목 (헬스 X / 2시간)
+- Dockerfile 작성 (멀티 스테이지 빌드), .dockerignore 작성
+- docker-compose.yml 작성 (app + mysql + redis)
   - healthcheck 설정 (MySQL 기동 후 앱 시작)
   - Volume 설정 (MySQL, Redis 데이터 영속성)
   - 환경변수 설정
 
-### 4/5 일 (2시간)
+### 4/10 금 (헬스 O / 40분)
 - 라즈베리파이 git pull → docker compose up --build -d 배포
 - 외부에서 API 호출 테스트
 - README.md 작성 (프로젝트 소개, 기술스택, ERD, API 목록, 실행 방법)
 - git commit & push
 
-### 4/6 월 (헬스 O / 40분)
+### 4/11 토 (5시간)
 - Spring 심화 학습 (`Spring_개념학습.md` 참고)
   - IoC/DI, AOP, @Transactional 원리
 
-### 4/7 화 (헬스 X / 2시간) — 기술 면접 공부
+### 4/12 일 (2시간) — 기술 면접 공부
 - 전체 면접 예상 질문 복습 (JPA + MSA + Spring + Docker)
 
-### 4/8 수 — 🎉 최종 완성
+### 4/12 일 — 🎉 최종 완성
 - 전체 점검 및 이력서에 프로젝트 추가
 
 ### 완료 기준
