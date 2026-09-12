@@ -14,7 +14,6 @@
 | 항목 | 내용 |
 |------|------|
 | 이름 | 윤효근 |
-| 연락처 | 010-8287-6090 |
 | 이메일 | **gyrms512@naver.com** |
 | GitHub | https://github.com/gyrms |
 | 대표 프로젝트 | https://github.com/gyrms/olive-market |
