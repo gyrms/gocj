@@ -46,7 +46,7 @@
 | Framework | **Spring Boot, Spring Framework**, Spring Security |
 | ORM / Query | **JPA, MyBatis, QueryDSL** |
 | Cache / Session | **Redis** |
-| Database | **Oracle**, MySQL, MSSQL, PostgreSQL |
+| Database | **Oracle**, **PostgreSQL**, MSSQL |
 | Cloud / Infra | AWS (EC2, S3, Elastic Beanstalk) |
 | CI/CD | Jenkins |
 | Protocol | REST API, SOAP |
